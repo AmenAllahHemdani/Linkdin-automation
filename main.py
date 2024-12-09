@@ -76,75 +76,73 @@ class Linkdin:
         return number
 
     def engagement(self,driver):
-            number_followers = int(self.show_number_of_followers(driver))
+        number_followers = int(self.show_number_of_followers(driver))
 
-            reaction1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[1]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
-            reaction2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[2]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
-            reaction3 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[3]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+        reaction1 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[1]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+        reaction2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[2]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+        reaction3 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[3]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
 
-            mean = (int(reaction1)+int(reaction2)+int(reaction3))//3
+        mean = (int(reaction1)+int(reaction2)+int(reaction3))//3
 
-            if mean >= (number_followers//100):
-                return True
-            else:
-                return False
+        if mean >= (number_followers//100):
+            return True
+        else:
+            return False
 
 
-    def make_follow(self,driver,account,followers,number_of_accounts):
-        for url in account:
-            try:
-                driver.get(url)
+    def make_follow(self,driver,url,followers,number_of_accounts):
+        try:
+            driver.get(url)
+            time.sleep(1)
+            if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[2]/div[1]/div[3]/button') or self.engagement(driver):
                 time.sleep(1)
-                if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[2]/div[1]/div[3]/button') or self.engagement(driver):
-                    time.sleep(1)
-                    if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/button[1]'):
-                        if driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').text == "Follow":
-                            time.sleep(1)
-                            follow = driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').click()
-                            
-                            name = driver.find_element(By.XPATH,'//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[1]/span/a/h1').text
-                            self.write(name)
-                            followers+=1
-                            print("follower in if: ",followers)
-                            if followers == number_of_accounts:
-                                return followers
-            except:
-                print("error")
-        return followers
+                if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/button[1]'):
+                    if driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').text == "Follow":
+                        time.sleep(1)
+                        follow = driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').click()
+                        
+                        name = driver.find_element(By.XPATH,'//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[1]/span/a/h1').text
+                        self.write(name)
+                        followers+=1
+                        print("follower in if: ",followers)
+                        if followers == number_of_accounts:
+                            return followers
+        except:
+            print("error")
+            return followers
 
-    def make_connect(self,driver,account,Connects,number_of_accounts):
-        for url in account:
-            try:
-                driver.get(url)
+    def make_connect(self,driver,url,Connects,number_of_accounts):
+        try:
+            driver.get(url)
+            time.sleep(1)
+            if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[2]/div[1]/div[3]/button') or self.engagement(driver):
                 time.sleep(1)
-                if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[2]/div[1]/div[3]/button') or self.engagement(driver):
-                    time.sleep(1)
-                    name = driver.find_element(By.XPATH,'//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[1]/span/a/h1').text
-                    if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/button[1]'):
-                        if driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').text == "Connect":
+                name = driver.find_element(By.XPATH,'//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[1]/span/a/h1').text
+                if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/button[1]'):
+                    if driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').text == "Connect":
+                        time.sleep(1)
+                        connect = driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').click()
+                        self.write(name)
+                        Connects+=1
+                        print("follower in if: ",Connects)
+                        if Connects == number_of_accounts:
+                            return Connects
+                    else:
+                        if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/div[2]/button/span'):
+                            print("more found")
+                            more = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//*/main/section[1]/div[2]/div[3]/div/div[2]/button"))).click()
                             time.sleep(1)
-                            connect = driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').click()
+                            connect = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//*/main/section[1]/div[2]/div[3]/div/div[2]/div/div/ul/li[3]/div/span"))).click()
+                            send = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//span[text()='Send']"))).click()
                             self.write(name)
                             Connects+=1
-                            print("follower in if: ",Connects)
+                            print("follower in else: ",Connects)
                             if Connects == number_of_accounts:
                                 return Connects
-                        else:
-                            if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/div[2]/button/span'):
-                                print("more found")
-                                more = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//*/main/section[1]/div[2]/div[3]/div/div[2]/button"))).click()
-                                time.sleep(1)
-                                connect = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//*/main/section[1]/div[2]/div[3]/div/div[2]/div/div/ul/li[3]/div/span"))).click()
-                                send = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,"//span[text()='Send']"))).click()
-                                self.write(name)
-                                Connects+=1
-                                print("follower in else: ",Connects)
-                                if Connects == number_of_accounts:
-                                    return Connects
 
-            except:
-                print("error")
-        return Connects
+        except:
+            print("error")
+            return Connects
 
 
 
@@ -154,17 +152,13 @@ class Linkdin:
         self.search(skill,driver)
         number_of_accounts = 20
         followers = 0
-        account = self.get_accounts_links(driver)
-        followers = self.make_connect(driver,account,followers,number_of_accounts)
-        print("follower : ",followers)
-        page = 12
+        page = 0
         while followers < number_of_accounts:
             page+=1
             if self.next_page(driver,page,skill):
                 account = self.get_accounts_links(driver)
-                print(account)
-                followers = self.make_connect(driver,account,followers,number_of_accounts)
-                print("follower : ",followers)
+                for url in account:
+                    followers = self.make_connect(driver,url,followers,number_of_accounts)
             else:
                 print("no such accounts")
                 break
@@ -178,17 +172,13 @@ class Linkdin:
         self.search(skill,driver)
         number_of_accounts = 20
         followers = 0
-        account = self.get_accounts_links(driver)
-        followers = self.make_follow(driver,account,followers,number_of_accounts)
-        print("follower : ",followers)
-        page = 12
+        page = 0
         while followers < number_of_accounts:
             page+=1
             if self.next_page(driver,page,skill):
                 account = self.get_accounts_links(driver)
-                print(account)
-                followers = self.make_follow(driver,account,followers,number_of_accounts)
-                print("follower : ",followers)
+                for url in account:
+                    followers = self.make_follow(driver,url,followers,number_of_accounts)
             else:
                 print("no such accounts")
                 break
