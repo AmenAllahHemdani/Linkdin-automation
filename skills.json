@@ -1,0 +1,47 @@
+
+    {"Soft Skills":[
+        "Communication","Team Collaboration","Adaptability","Problem Solving","Leadership",
+        "Emotional Intelligence","Time Management","Decision-Making","Interpersonal Skills",
+        "Conflict Resolution","Critical Thinking","Cultural Competence","Work Ethic",
+        "Mentorship","Creativity","Organization","Initiative","Flexibility","Negotiation",
+        "Negotiation","Stress Management","CEO"
+    ],
+    "Technical Skills":[
+        "Data Analytics","Data Science","Programming","Cloud Computing","Cybersecurity","Digital Marketing",
+        "Web Development","Software Development","Artificial Intelligence","Blockchain","UI/UX Design",
+        "IT Support","Robotics","Mobile Development","Game Development","DevOps","Virtual Reality",
+        "E-commerce Platforms","Database Management","Embedded Systems","Digital Transformation"
+    ],
+    "Business Skills":[
+        "Project Management","sales Management","Strategic planning","Budget Management",
+        "Financial Management","Business Development","Marketing Strategy","Supply Chain Management",
+        "Operations Management","Negotiation","Change Management","Brand Management",
+        "Customer Relationship Management","Product Management","Quality Assurance",
+        "Investment Analysis","Competitive Intelligence","Entrepreneurship",
+        "Human Resources","Networking","Leadership Development","Agile Leadership"
+    ],
+    "Industry-Specific Skills":[
+        "Finance","Healthcare","Engineering","Education","Patient Care","Clinical Research",
+        "Pharmacology","Medical Imaging","Surgical Skills","Nursing Skills","Nursing Skills",
+        "Healthcare Administration","Therapy Skills","Public Health","Compliance","Nutrition",
+        "Medical Coding","Health Education","Laboratory Techniques","Emergency Care","Dentistry",
+        "Pediatrics","Oncology","Healthcare Analytics"
+    ],
+    "Emerging Skills":[
+        "Generative AI","Sustainability","Remote Work","AI Ethics","Machine Learning Operations",
+        "Natural Language Processing","Robotic Process Automation","Blockchain Technology",
+        "Sustainability Practices","Agile Leadership","Change Management","Social Commerce",
+        "Interactive Marketing","Community Building","Diversity","Emotional Agility",
+        "Empathy in Leadership","Adaptability"
+    ],
+    "Creative Skills":[
+        "Design Thinking","Graphic Design","Content Creation","Idea Generation",
+        "Visual Communication","Creative Writing","Art Direction","Graphic Design",
+        "Product Design","Video Production","Photography","Marketing Creativity",
+        "Innovation Management","3D Modeling","Craftsmanship","Improvisation",
+        "Fashion Design","Creative Problem-Solving","Animation"
+    ]
+    }
+
+
+
