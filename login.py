@@ -9,8 +9,8 @@ def load_cookies(driver):
     pickle.dump(driver.get_cookies(), open("cookies.pkl", "wb"))
 
 def Login():
-    email = "firastuiti@gmail.com"
-    password = 'firastuiti123'
+    email = "newteleven@gmail.com"
+    password = 'newteleven123'
     
     driver = webdriver.Chrome()
     driver.get("https://www.linkedin.com/login/")
@@ -31,7 +31,3 @@ def Login():
     driver.get("https://www.linkedin.com/feed/")
 
 Login()   
-
-
-#https://www.linkedin.com/search/results/people/?keywords=Frontend%20Top%20voice
-#https://www.linkedin.com/search/results/people/?keywords=backend%20Top%20voice
