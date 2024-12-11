@@ -6,8 +6,9 @@ This project is designed to automate following and connecting with Linkedin prof
 # First : 
 #### open `login.py` and add your email and password
 `
-email = ""
-password = ""
+email = ""`
+
+`password = ""
 `
 
 # How to use : 
