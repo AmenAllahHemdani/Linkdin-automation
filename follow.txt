@@ -182,3 +182,71 @@ Connect  :  Ada Guan
 Connect  :  Celia Sandhya Daniels
 Connect  :  Jackeline Tapia
 Connect  :  Pau Garcia-Milà
+
+Follow  :  Beatriz de Tena
+Connect  :  Beatriz de Tena
+Follow  :  Dr. Tina Ruseva
+Follow  :  Lorenzo Montanari
+Connect  :  Lorenzo Montanari
+Follow  :  Newton Queiroz
+Connect  :  Newton Queiroz
+Follow  :  Barbara Martin Coppola
+Follow  :  Richard Morla
+Connect  :  Richard Morla
+Follow  :  Marcelo Zimet
+Connect  :  Marcelo Zimet
+Follow  :  Victor Assis
+Follow  :  Adhil Shetty
+Connect  :  Adhil Shetty
+
+Follow  :  Cesario Nakamura
+Connect  :  Cesario Nakamura
+Follow  :  Humberto Casagrande
+Connect  :  Humberto Casagrande
+Follow  :  Cain Blythe
+Connect  :  Cain Blythe
+Follow  :  Rui Duarte Brandão
+Connect  :  Rui Duarte Brandão
+Follow  :  Lucas Vargas
+Connect  :  Marta Basso
+
+Follow  :  Daan van Rossum
+Connect  :  Daan van Rossum
+Follow  :  Javier Navarro
+Connect  :  Javier Navarro
+Follow  :  Eden Wiedemann
+Follow  :  Sara Wallin
+Follow  :  Lisa Unwin
+Connect  :  Lisa Unwin
+
+Follow  :  Meagan Loyst
+Connect  :  Meagan Loyst
+Follow  :  Prue Gilbert
+Connect  :  Prue Gilbert
+Follow  :  Baptiste Hamain
+Follow  :  Cassie Kozyrkov
+Follow  :  Bill Winters
+Connect  :  Fabien VERSAVAU
+Connect  :  Andy Stalman
+Connect  :  Yuhana Barakzai
+Follow  :  Reshma Nair
+Connect  :  Reshma Nair
+Follow  :  Jaslyn Ng Asia Insurance Agent of the Year Ex-HR Global Leader, Top of the Table Qualifier
+Follow  :  Stephanie Llamas
+Connect  :  Pau Garcia-Milà
+Connect  :  Antonio Grasso
+Follow  :  Beatriz de Tena
+Follow  :  Dr. Tina Ruseva
+Follow  :  Lorenzo Montanari
+Follow  :  Cesario Nakamura
+Follow  :  Reshma Nair
+Follow  :  Reshma Nair
+Follow  :  Javier Navarro
+Follow  :  Eden Wiedemann
+Follow  :  Sara Wallin
+Follow  :  Fábio Rodrigues
+Connect  :  Selma Kuyas
+Connect  :  Alexandra Ridoux
+Connect  :  Jessica CALAUTTI
+Connect  :  Joy Ofodu
+Connect  :  Laure Piana

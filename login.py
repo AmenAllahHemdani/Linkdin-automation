@@ -9,7 +9,7 @@ def load_cookies(driver):
     pickle.dump(driver.get_cookies(), open("cookies.pkl", "wb"))
 
 def Login():
-    email = "newteleven@gmail.com"
+    email = "newteleven@outlook.com"
     password = 'newteleven123'
     
     driver = webdriver.Chrome()

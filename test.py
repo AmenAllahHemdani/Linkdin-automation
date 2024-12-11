@@ -58,6 +58,36 @@ def make_connect(driver,url):
         return 0
 
 
+def show_number_of_followers(driver):
+        number = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.XPATH, "//*/main/section[1]/div[2]/ul/li[1]/span"))
+        ).text.replace(" followers","")
+
+        return number.replace(",","")
+
+def engagement(driver):
+        # try:
+            number_followers = int(show_number_of_followers(driver))
+            print(number_followers)
+
+            reaction1 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[1]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+            reaction2 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[2]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+            reaction3 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[3]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+
+            print(reaction1)
+            print(reaction2)
+            print(reaction3)
+
+            mean = (int(reaction1)+int(reaction2)+int(reaction3))//3
+
+            if mean >= (number_followers//100) and number_followers > 10000:
+                return True
+            else:
+                return False 
+        # except:
+        #     print('reaction anf followers not found')
+        #     return False
+
 driver = inisialise_driver()
-url = "https://www.linkedin.com/in/javier-navarro-90698464/"
-print(make_connect(driver,url))
+driver.get("https://www.linkedin.com/in/helenpamely/")
+print(engagement(driver))

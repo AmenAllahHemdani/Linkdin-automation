@@ -54,11 +54,10 @@ class Linkdin:
 
 
     def get_accounts_links(self,driver):
-        n = self.get_len_accounts(driver)
-        print("n = ",n)
+        len_accounts = self.get_len_accounts(driver)
         account = []
         time.sleep(1)
-        for i in range(1, n+1):
+        for i in range(1, len_accounts+1):
             try:
                 peoples_accounts = driver.find_element(By.XPATH, f'//*//div/div/ul/li[{i}]/div/div/div/div[2]/div[1]/div[1]/div/span[1]/span/a')
                 url = "https://www.linkedin.com/search/results/people/"
@@ -71,23 +70,28 @@ class Linkdin:
 
     def show_number_of_followers(self, driver):
         number = WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.XPATH, "//*/main/section[5]/div[2]/div/div/div[1]/p/span[1]"))
+        EC.presence_of_element_located((By.XPATH, "//*/main/section[1]/div[2]/ul/li[1]/span"))
         ).text.replace(" followers","")
-        return number
+        return number.replace(",","")
 
     def engagement(self,driver):
-        number_followers = int(self.show_number_of_followers(driver))
+        try:
+            number_followers = int(self.show_number_of_followers(driver))
 
-        reaction1 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[1]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
-        reaction2 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[2]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
-        reaction3 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[3]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+            reaction1 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[1]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+            reaction2 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[2]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
+            reaction3 = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,'//*/div[4]/div/div/div[1]/ul/li[3]/div/div/div[last()-1]/div/div/ul/li[1]/button/span'))).text.replace(",","")
 
-        mean = (int(reaction1)+int(reaction2)+int(reaction3))//3
+            mean = (int(reaction1)+int(reaction2)+int(reaction3))//3
 
-        if mean >= (number_followers//100) and number_followers > 10000:
-            return True
-        else:
-            return False 
+            if mean >= (number_followers//100) and number_followers > 10000:
+                return True
+            else:
+                return False 
+        except:
+            print('reaction and number of followers not found')
+            return False
+
 
     def make_follow(self,driver,url):
         try:
@@ -96,16 +100,17 @@ class Linkdin:
             name = driver.find_element(By.XPATH,'//*[@id="profile-content"]/div/div[2]/div/div/main/section[1]/div[2]/div[2]/div[1]/div[1]/span/a/h1').text
             if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[2]/div[1]/div[3]/button') or self.engagement(driver):
                 time.sleep(1)
-                if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/button[1]'):
-                    if driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').text == "Follow":
-                        time.sleep(1)
-                        follow = driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').click()
-                        self.write("Follow  :  "+name)
-                        return 1
-                    
+                if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/button/span[text()=\'Follow\']'):
+                    time.sleep(1)
+                    follow = driver.find_element(By.XPATH,'//*/main/section[1]/div[2]/div[3]/div/button[1]').click()
+                    self.write("Follow  :  "+name)
+                    return 1
+                else:
+                    return 0    
         except:
-            print("error")
+            print("error of following")
         return 0
+
 
     def make_connect(self,driver,url):
         try:
@@ -120,8 +125,11 @@ class Linkdin:
                     send = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,"//span[text()='Send']"))).click()
                     self.write("Connect  :  "+name)
                     return 1
+                
+                elif self.check_exists_by_xpath(driver,"//*/main/section[1]/div[2]/div[3]/div/button/span[text()='Pending']"):
+                    return 0
                     
-                elif self.check_exists_by_xpath(driver,"//*/main/section[1]/div[2]/div[3]/div/button/span[text()='Follow']"):
+                else:
                     if self.check_exists_by_xpath(driver,'//*/main/section[1]/div[2]/div[3]/div/div[2]/button/span[text()=\'More\']'):
                         more = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH,"//*/main/section[1]/div[2]/div[3]/div/div[2]/button/span[text()=\'More\']"))).click()
                         time.sleep(1)
@@ -132,17 +140,16 @@ class Linkdin:
                         return 1
 
         except:
-            print("error")
+            print("error of connection")
         return 0
 
 
-    def connect(self):
+    def connect(self,number_of_accounts):
         skill = get_skill()
         driver = self.inisialise_driver()
         self.search(skill,driver)
-        number_of_accounts = 5
         Connects = 0
-        page = 4
+        page = 0
         while Connects < number_of_accounts:
             page+=1
             if self.next_page(driver,page,skill):
@@ -156,11 +163,10 @@ class Linkdin:
                 break
 
 
-    def follow(self):
+    def follow(self,number_of_accounts):
         skill = get_skill()
         driver = self.inisialise_driver()
         self.search(skill,driver)
-        number_of_accounts = 3
         followers = 0
         page = 0
         while followers < number_of_accounts:
@@ -176,28 +182,43 @@ class Linkdin:
                 break
 
 
-    def follow_connect(self):
+    def follow_connect(self,number_of_accounts):
         skill = get_skill()
         driver = self.inisialise_driver()
         self.search(skill,driver)
-        number_of_accounts = 3
         followers = 0
         connects = 0
-        page = 6
+        page = 1
         while followers < number_of_accounts and connects < number_of_accounts:
             page+=1
             if self.next_page(driver,page,skill):
                 account = self.get_accounts_links(driver)
                 for url in account:
-                    followers += self.make_follow(driver,url)
-                    connects += self.make_connect(driver,url)
-                    if followers == number_of_accounts and connects == number_of_accounts:
+                    if followers < number_of_accounts and connects < number_of_accounts:
+                        followers += self.make_follow(driver,url)
+                        connects += self.make_connect(driver,url)
+                    elif followers < number_of_accounts:
+                        followers += self.make_follow(driver,url)
+                    elif connects < number_of_accounts:
+                        connects += self.make_connect(driver,url)
+                    else:
                         break
             else:
                 print("no such accounts")
                 break
         print("followers are complited")
+    
+    def start(self,number_of_accounts=5):
+        print("""
+        1 : Follow
+        2 : Connect
+        3 : Follow & Connect
+        """)
+        choice = int(input("Your choice : "))
+        operation = [self.follow,self.connect,self.follow_connect]
+        operation[choice-1](number_of_accounts)
+
 
 
 my_account = Linkdin()
-my_account.follow_connect()
+my_account.start()
