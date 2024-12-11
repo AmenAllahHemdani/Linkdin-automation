@@ -180,42 +180,16 @@ class Linkdin:
             else:
                 print("no such accounts")
                 break
-
-
-    def follow_connect(self,number_of_accounts):
-        skill = get_skill()
-        driver = self.inisialise_driver()
-        self.search(skill,driver)
-        followers = 0
-        connects = 0
-        page = 1
-        while followers < number_of_accounts and connects < number_of_accounts:
-            page+=1
-            if self.next_page(driver,page,skill):
-                account = self.get_accounts_links(driver)
-                for url in account:
-                    if followers < number_of_accounts and connects < number_of_accounts:
-                        followers += self.make_follow(driver,url)
-                        connects += self.make_connect(driver,url)
-                    elif followers < number_of_accounts:
-                        followers += self.make_follow(driver,url)
-                    elif connects < number_of_accounts:
-                        connects += self.make_connect(driver,url)
-                    else:
-                        break
-            else:
-                print("no such accounts")
-                break
-        print("followers are complited")
     
     def start(self,number_of_accounts=5):
         print("""
         1 : Follow
         2 : Connect
-        3 : Follow & Connect
         """)
         choice = int(input("Your choice : "))
-        operation = [self.follow,self.connect,self.follow_connect]
+        while choice not in [1,2]:
+            choice = int(input("Your choice : "))
+        operation = [self.follow,self.connect]
         operation[choice-1](number_of_accounts)
 
 
