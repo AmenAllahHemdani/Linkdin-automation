@@ -10,6 +10,7 @@ email = ""`
 
 `password = ""
 `
+Solve the CAPTCHA (this task will be done only the first time) to save the cookies in the `cookies.pkl` file.
 
 # How to use : 
 #### 1- Import Linkdin package
